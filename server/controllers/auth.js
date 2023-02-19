@@ -18,6 +18,7 @@ export const register = async (req, res) => {
         } = req.body;
 
         // using salt to encrypt password, then creating new user with the encrypted password, as well as randomly generated values for the profile views and impressions
+
         const salt = await bcrypt.genSalt();
         const passwordHash = await bcrypt.hash(password, salt);
         const newUser = new Users({
@@ -32,6 +33,7 @@ export const register = async (req, res) => {
             viewedProfile: Math.floor(Math.random() * 10000),
             impressions: Math.floor(Math.random() * 10000)
         });
+
         // sending user a status of 201 to show something was created, then sending a response to the front end with the saved password encrypted user
 
         const savedUser = await newUser.save();
@@ -41,5 +43,9 @@ export const register = async (req, res) => {
         // something went wrong
 
         res.status(500).json({error: e.message});
-    }
-}
+    };
+};
+
+export const login = async (req, res) => {
+
+};
