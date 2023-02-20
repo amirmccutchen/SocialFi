@@ -51,12 +51,17 @@ export const login = async (req, res) => {
 
         // using mongoose to find user that has specified email
 
-        const [ email, password ] = req.body;
+        const { email, password } = req.body;
+
+        // checking if user inputted user/pass are valid, if not send error to user
+
         const user = await Users.findOne({ email: email });
         if (!user) return res.status(400).json({ msg: 'User does not exist.' });
 
         const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) return res.status(400).json({ msg: 'Invalid credentials.'})
 
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
     } catch (e) {
         res.status(500).json({ error: e.message });
