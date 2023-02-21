@@ -50,3 +50,17 @@ export const getFeedPosts = async (req, res) => {
         res.status(404).json({ message: e.message });
     };
 };
+
+// viewing user's posts
+
+export const getUserPosts = async (req, res) => {
+    try {
+
+        const { userId } = req.params;
+        const post = await Post.find({ userId });
+        res.status(200).json(post);
+
+    } catch (e) {
+        res.status(404).json({ message: e.message });
+    };
+};
