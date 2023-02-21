@@ -16,3 +16,5 @@ router.get('/:userId/posts', verifyToken, getUserPosts);
 // liking and unliking posts
 
 router.patch('/:id/like', verifyToken, likePost);
+
+export default router;
