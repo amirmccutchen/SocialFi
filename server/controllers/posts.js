@@ -36,3 +36,17 @@ export const createPost = async (req, res) => {
 
     };
 };
+
+// viewing the feed
+
+export const getFeedPosts = async (req, res) => {
+    try {
+
+        const post = await Post.find();
+
+        res.status(200).json(post);
+
+    } catch (e) {
+        res.status(404).json({ message: e.message });
+    };
+};
