@@ -58,7 +58,43 @@ export const getUserPosts = async (req, res) => {
 
         const { userId } = req.params;
         const post = await Post.find({ userId });
+
         res.status(200).json(post);
+
+    } catch (e) {
+        res.status(404).json({ message: e.message });
+    };
+};
+
+// updating posts
+
+export const likePost = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { userId } = req.body;
+
+        // grabbing post info and whether user has liked it or not
+
+        const post = await Post.findById(id);
+        const isLiked = post.likes.get(userId);
+
+        // if liked, delete user id from liked list, if not, do the opposite
+
+        if (isLiked) {
+            post.likes.delete(userId);
+        } else {
+            post.likes.set(userId, true);
+        };
+
+        // update post and then pass in new likes
+
+        const updatedPost = await Post.findByIdAndUpdate(
+            id,
+            { likes: post.likes },
+            { new: true }
+        );
+
+        res.status(200).json(updatedPost);
 
     } catch (e) {
         res.status(404).json({ message: e.message });
