@@ -4,10 +4,10 @@ import { verifyToken } from '../middleware/auth.js';
 
 const router = express.Router();
 
+// routes for viewing a user, user friends, and adding/removing a friend
+
 router.get('/:id', verifyToken, getUser);
 router.get('/:id/friends', verifyToken, getUserFriends);
-
-// remove friends
 
 router.patch('/:id/:friendId', verifyToken, addRemoveFriend);
 

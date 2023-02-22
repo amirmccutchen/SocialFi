@@ -1,4 +1,4 @@
-import express, { application } from 'express';
+import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
@@ -18,9 +18,9 @@ import { verifyToken } from './middleware/auth.js';
 
 // data imports
 
-import Users from './models/Users.js';
-import Post from './models/Post.js';
-import { users, posts } from './data/index.js';
+// import Users from './models/Users.js';
+// import Post from './models/Post.js';
+// import { users, posts } from './data/index.js';
 
 //  server configs
 
@@ -76,7 +76,8 @@ mongoose
 
     // initializing data
 
-    Users.insertMany(users);
-    Post.insertMany(posts);
+    // Users.insertMany(users);
+    // Post.insertMany(posts);
+
   })
   .catch((error) => console.log(`${error}, could not connect.`));
