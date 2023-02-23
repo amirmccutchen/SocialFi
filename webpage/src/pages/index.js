@@ -1,9 +1,11 @@
-import HomePage from "./HomePage";
-import LoginPage from "./LoginPage";
+import Home from "./Home";
+import Login from "./Login";
 import NavBar from "./NavBar";
+import Profile from "./Profile";
 
 export {
-    HomePage,
-    LoginPage,
+    Home,
+    Login,
     NavBar,
+    Profile,
 };
