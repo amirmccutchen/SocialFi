@@ -57,6 +57,9 @@ const NavBar = () => {
   return (
     <FlexBetween padding = '1rem 6%' backgroundColor={alt}>
       <FlexBetween gap = '1.75rem'>
+
+        {/* Logo */}
+
         <Typography
           fontWeight = 'bold'
           fontSize = 'clamp(1rem, 2rem, 2.25rem)'
@@ -87,8 +90,12 @@ const NavBar = () => {
       </FlexBetween>
 
       {/* desktop */}
+
       {isNonMobileScreens ? (
         <FlexBetween gap = '2rem'>
+
+          {/* light/dark mode toggle */}
+
           <IconButton onClick = {() => dispatch(setMode())}>
             {theme.palette.mode === 'dark' ? (
               <DarkMode sx = {{ fontSize: '25px' }} />
@@ -96,6 +103,9 @@ const NavBar = () => {
               <LightMode sx = {{ color: dark, fontSize: '25px' }} />
             )}
           </IconButton>
+
+          {/* nav icons */}
+
           <Message sx = {{ fontSize: '25px' }} />
           <Notifications sx = {{ fontSize: '25px' }} />
           <Help sx = {{ fontSize: '25px' }} />
@@ -133,6 +143,7 @@ const NavBar = () => {
       )}
 
       {/* mobile */}
+
       {!isNonMobileScreens && isMobileMenuToggled && (
         <Box
           position = 'fixed'
@@ -145,6 +156,7 @@ const NavBar = () => {
           backgroundColor = {background}
         >
           {/* close icon */}
+
           <Box display = 'flex' justifyContent = 'flex-end' p = '1rem'>
             <IconButton
               onClick = {() => setIsMobileMenuToggled(!isMobileMenuToggled)}
@@ -154,6 +166,7 @@ const NavBar = () => {
           </Box>
 
           {/* menu items */}
+
           <FlexBetween
             display = 'flex'
             flexDirection = 'column'
