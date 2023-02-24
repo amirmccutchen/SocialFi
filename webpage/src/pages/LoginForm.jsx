@@ -8,13 +8,15 @@ import {
   useTheme,
 } from '@mui/material';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import { Formik } from 'formik';
-import * as yup from 'yup';
+import { Formik } from 'formik'; // form provider
+import * as yup from 'yup'; // validation library
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setLogin } from 'state';
 import Dropzone from 'react-dropzone';
 import FlexBetween from 'components/FlexBetween';
+
+// required registration values
 
 const registerSchema = yup.object().shape({
   firstName: yup.string().required('required'),
@@ -25,6 +27,8 @@ const registerSchema = yup.object().shape({
   occupation: yup.string().required('required'),
   picture: yup.string().required('required'),
 });
+
+// values required to log in
 
 const loginSchema = yup.object().shape({
   email: yup.string().email('invalid email').required('required'),
@@ -47,6 +51,7 @@ const initialValuesLogin = {
 };
 
 const LoginForm = () => {
+
   const [pageType, setPageType] = useState('login');
   const { palette } = useTheme();
   const dispatch = useDispatch();
@@ -56,7 +61,9 @@ const LoginForm = () => {
   const isRegister = pageType === 'register';
 
   const register = async (values, onSubmitProps) => {
+
     // This allows sending form info with image
+
     const formData = new FormData();
     for (let value in values) {
       formData.append(value, values[value]);
@@ -107,7 +114,8 @@ const LoginForm = () => {
       onSubmit = {handleFormSubmit}
       initialValues = {isLogin ? initialValuesLogin : initialValuesRegister}
       validationSchema = {isLogin ? loginSchema : registerSchema}
-    >
+    > 
+    {/* adding the following values to be used in the form */}
       {({
         values,
         errors,
@@ -123,12 +131,15 @@ const LoginForm = () => {
             display = 'grid'
             gap = '30px'
             gridTemplateColumns = 'repeat(4, minmax(0, 1fr))'
+            // targeting any child div
             sx = {{
               '& > div': { gridColumn: isNonMobile ? undefined : 'span 4' },
             }}
           >
             {isRegister && (
               <>
+              {/* 'input' component of mui */}
+              {/* creating text input field for each required registration value */}
                 <TextField
                   label = 'First Name'
                   onBlur = {handleBlur}
@@ -173,13 +184,14 @@ const LoginForm = () => {
                   helperText = {touched.occupation && errors.occupation}
                   sx = {{ gridColumn: 'span 4' }}
                 />
+                {/* uploading profile picture */}
                 <Box
                   gridColumn = 'span 4'
                   border = {`1px solid ${palette.neutral.medium}`}
                   borderRadius = '5px'
                   p = '1rem'
                 >
-                  <Dropzone
+                  <Dropzone // a component with an automatic config where we can pass in files and have them validated
                     acceptedFiles = '.jpg,.jpeg,.png'
                     multiple = {false}
                     onDrop = {(acceptedFiles) =>
@@ -195,7 +207,7 @@ const LoginForm = () => {
                       >
                         <input {...getInputProps()} />
                         {!values.picture ? (
-                          <p>Add Picture Here</p>
+                          <p>Upload Profile Picture</p>
                         ) : (
                           <FlexBetween>
                             <Typography>{values.picture.name}</Typography>
@@ -208,6 +220,8 @@ const LoginForm = () => {
                 </Box>
               </>
             )}
+
+            {/* login section */}
 
             <TextField
               label = 'Email'
@@ -232,7 +246,7 @@ const LoginForm = () => {
             />
           </Box>
 
-          {/* BUTTONS */}
+          {/* registration/login submission buttons */}
           <Box>
             <Button
               fullWidth
