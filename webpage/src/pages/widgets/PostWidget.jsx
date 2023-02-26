@@ -1,13 +1,13 @@
 import { ChatBubbleOutlineOutlined, FavoriteBorderOutlined, FavoriteOutlined, ShareOutlined, } from '@mui/icons-material';
-  import { Box, Divider, IconButton, Typography, useTheme } from '@mui/material';
-  import { FlexBetween, Friend, WidgetWrapper } from 'components';
-  import { useState } from 'react';
-  import { useDispatch, useSelector } from 'react-redux';
-  import { setPost } from 'state';
+import { Box, Divider, IconButton, Typography, useTheme } from '@mui/material';
+import { FlexBetween, Friend, WidgetWrapper } from 'components';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setPost } from 'state';
 
-  // props consist of post data model keys
+// props consist of post data model keys
   
-  const PostWidget = ({
+const PostWidget = ({
     postId,
     postUserId,
     name,
@@ -17,7 +17,7 @@ import { ChatBubbleOutlineOutlined, FavoriteBorderOutlined, FavoriteOutlined, Sh
     userPicturePath,
     likes,
     comments,
-  }) => {
+}) => {
     const [isComments, setIsComments] = useState(false);
     const dispatch = useDispatch();
     const token = useSelector((state) => state.token);
@@ -104,4 +104,4 @@ import { ChatBubbleOutlineOutlined, FavoriteBorderOutlined, FavoriteOutlined, Sh
     );
   };
   
-  export default PostWidget;
+export default PostWidget;
