@@ -1,13 +1,15 @@
-import UserWidget from './UserWidget';
-import MyPostWidget from './MyPostWidget';
-import PostsWidget from './PostsWidget';
-import PostWidget from './PostWidget';
-import AdsWidget from './AdsWidget';
+import User from './User';
+import MyPost from './MyPost';
+import Posts from './Posts';
+import Post from './Post';
+import Ads from './Ads';
+import FriendsList from './FriendsList';
 
 export {
-    UserWidget,
-    MyPostWidget,
-    PostWidget,
-    PostsWidget,
-    AdsWidget,
+    User,
+    MyPost,
+    Post,
+    Posts,
+    Ads,
+    FriendsList,
 };

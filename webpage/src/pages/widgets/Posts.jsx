@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPosts } from 'state';
-import { PostWidget } from '.';
+import { Post } from '.';
 
 const PostsWidget = ({ userId, isProfile = false }) => {
 
@@ -59,7 +59,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
           likes,
           comments,
         }) => (
-          <PostWidget
+          <Post
             key = {_id}
             postId = {_id}
             postUserId = {userId}
