@@ -1,10 +1,12 @@
 import { Box, useMediaQuery } from '@mui/material';
 import { useSelector } from 'react-redux';
-import Navbar from 'pages/navbar';
-import { UserWidget, MyPostWidget } from './widgets';
+import Navbar from 'scenes/navbar';
+import { UserWidget, MyPostWidget, PostsWidget, AdvertWidget, FriendListWidget } from './widgets';
 
 const Home = () => {
+  // checking device depending on screen size
   const isNonMobileScreens = useMediaQuery('(min-width:1000px)');
+
   const { _id, picturePath } = useSelector((state) => state.user);
 
   return (
