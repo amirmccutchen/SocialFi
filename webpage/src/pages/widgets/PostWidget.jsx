@@ -22,12 +22,20 @@ const PostWidget = ({
     const dispatch = useDispatch();
     const token = useSelector((state) => state.token);
     const loggedInUserId = useSelector((state) => state.user._id);
+
+    /* checking to see if the user has liked post or not
+
+    likes are stored as a map of users that have liked the post, 
+    so we just get the length of the keys of the map to get the amount of likes a post has. */
+
     const isLiked = Boolean(likes[loggedInUserId]);
     const likeCount = Object.keys(likes).length;
   
     const { palette } = useTheme();
     const main = palette.neutral.main;
     const primary = palette.primary.main;
+
+    // api call to add/remove a like to a post, also keeping track of whether or not the user has liked the post or not
   
     const patchLike = async () => {
       const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
@@ -38,6 +46,9 @@ const PostWidget = ({
         },
         body: JSON.stringify({ userId: loggedInUserId }),
       });
+
+      // parsing the response body as JSON data
+
       const updatedPost = await response.json();
       dispatch(setPost({ post: updatedPost }));
     };
@@ -66,6 +77,9 @@ const PostWidget = ({
           <FlexBetween gap = '1rem'>
             <FlexBetween gap = '0.3rem'>
               <IconButton onClick = {patchLike}>
+
+                {/* icon displayed based on whether or not user has liked post */}
+
                 {isLiked ? (
                   <FavoriteOutlined sx = {{ color: primary }} />
                 ) : (
@@ -87,6 +101,9 @@ const PostWidget = ({
             <ShareOutlined />
           </IconButton>
         </FlexBetween>
+
+        {/* displaying comments */}
+        
         {isComments && (
           <Box mt = '0.5rem'>
             {comments.map((comment, i) => (
