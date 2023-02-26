@@ -35,7 +35,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
     // sending a request to the server to update _id's friends list with friendId added or removed
 
     const response = await fetch(
-      `http://localhost:3001/users/${_id}/${friendId}`,
+      `http://localhost:5001/users/${_id}/${friendId}`,
       {
         method: 'PATCH',
         headers: {

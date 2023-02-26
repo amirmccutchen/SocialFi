@@ -5,6 +5,8 @@ import { useParams } from 'react-router-dom';
 import NavBar from './NavBar';
 import { FriendsList, MyPost, Posts, User } from './widgets';
 
+// reused a lot of widgets to make building the user profile display as simple as possible
+
 const Profile = () => {
 
   // getting user from url parameters and token from stored state
@@ -18,7 +20,7 @@ const Profile = () => {
   // grabbing user information
 
   const getUser = async () => {
-    const response = await fetch(`http://localhost:3001/users/${userId}`, {
+    const response = await fetch(`http://localhost:5001/users/${userId}`, {
       method: 'GET',
       headers: { Authorization: `Bearer ${token}` },
     });

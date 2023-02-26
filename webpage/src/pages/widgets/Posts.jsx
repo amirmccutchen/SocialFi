@@ -13,7 +13,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
   // api call to get posts for main feed (by default as when you log in, you won't be directly sent to a user's profile)
 
   const getPosts = async () => {
-    const response = await fetch('http://localhost:3001/posts', {
+    const response = await fetch('http://localhost:5001/posts', {
       method: 'GET',
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -25,7 +25,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 
   const getUserPosts = async () => {
     const response = await fetch(
-      `http://localhost:3001/posts/${userId}/posts`,
+      `http://localhost:5001/posts/${userId}/posts`,
       {
         method: 'GET',
         headers: { Authorization: `Bearer ${token}` },
