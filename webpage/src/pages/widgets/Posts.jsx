@@ -42,6 +42,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
       getPosts();
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  
 
   return (
     // sending key values from api call to the postwidget component
@@ -72,7 +73,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
             comments = {comments}
           />
         )
-      )}
+      ).reverse()}
     </>
   );
 };

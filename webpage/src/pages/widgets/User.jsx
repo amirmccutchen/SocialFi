@@ -1,10 +1,9 @@
 import {
     ManageAccountsOutlined,
-    EditOutlined,
     LocationOnOutlined,
     WorkOutlineOutlined,
   } from '@mui/icons-material';
-import { Box, Typography, Divider, useTheme } from '@mui/material';
+import { Box, Typography, Divider, useTheme, Link } from '@mui/material';
 import { UserImage , FlexBetween, WidgetWrapper } from 'components';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -118,19 +117,6 @@ import { useNavigate } from 'react-router-dom';
             Social Profiles
           </Typography>
   
-          <FlexBetween gap = '1rem' mb = '0.5rem'>
-            <FlexBetween gap = '1rem'>
-              <img src = '../assets/twitter.png' alt = 'twitter' />
-              <Box>
-                <Typography color = {main} fontWeight = '500'>
-                  Twitter
-                </Typography>
-                <Typography color = {medium}>Social Network</Typography>
-              </Box>
-            </FlexBetween>
-            <EditOutlined sx = {{ color: main }} />
-          </FlexBetween>
-  
           <FlexBetween gap = '1rem'>
             <FlexBetween gap = '1rem'>
               <img src = '../assets/linkedin.png' alt = 'linkedin' />
@@ -138,10 +124,13 @@ import { useNavigate } from 'react-router-dom';
                 <Typography color = {main} fontWeight='500'>
                   Linkedin
                 </Typography>
-                <Typography color = {medium}>Network Platform</Typography>
+                <Link 
+                color = {medium}
+                onClick = {() => window.open(`https://www.linkedin.com/in/amir-mccutchen/`, '_blank') }
+                sx = {{ '&:hover': { cursor: 'pointer' } }}
+                >https://www.linkedin.com/in/amir-mccutchen/</Link>
               </Box>
             </FlexBetween>
-            <EditOutlined sx = {{ color: main }} />
           </FlexBetween>
         </Box>
       </WidgetWrapper>
