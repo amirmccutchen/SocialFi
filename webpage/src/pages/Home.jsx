@@ -1,7 +1,7 @@
 import { Box, useMediaQuery } from '@mui/material';
 import { useSelector } from 'react-redux';
-import Navbar from 'scenes/navbar';
-import { User, MyPost, Posts, FriendList, Ads } from './s';
+import NavBar from './NavBar';
+import { User, MyPost, Posts, FriendsList, Ads } from './widgets';
 
 const Home = () => {
   // checking device depending on screen size
@@ -11,7 +11,7 @@ const Home = () => {
 
   return (
     <Box>
-      <Navbar />
+      <NavBar />
       <Box
         width = '100%'
         padding = '2rem 6%'
@@ -33,7 +33,7 @@ const Home = () => {
           <Box flexBasis = '26%'>
             <Ads />
             <Box m = '2rem 0' />
-            <FriendList userId = {_id} />
+            <FriendsList userId = {_id} />
           </Box>
         )}
       </Box>
