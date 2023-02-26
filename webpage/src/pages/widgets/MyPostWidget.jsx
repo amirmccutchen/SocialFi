@@ -19,32 +19,50 @@ import {
   } from '@mui/material';
   import FlexBetween from 'components/FlexBetween';
   import Dropzone from 'react-dropzone';
-  import UserImage from 'components/UserImage';
-  import WidgetWrapper from 'components/WidgetWrapper';
+  import { UserImage, WidgetWrapper } from 'components';
   import { useState } from 'react';
   import { useDispatch, useSelector } from 'react-redux';
   import { setPosts } from 'state';
   
   const MyPostWidget = ({ picturePath }) => {
+
     const dispatch = useDispatch();
+
+    // post content
+
     const [isImage, setIsImage] = useState(false);
     const [image, setImage] = useState(null);
     const [post, setPost] = useState('');
+
     const { palette } = useTheme();
+
+    // getting id and auth token from state to authorize them to be able to call from backend api
+
     const { _id } = useSelector((state) => state.user);
     const token = useSelector((state) => state.token);
+
     const isNonMobileScreens = useMediaQuery('(min-width: 1000px)');
+
+    // color themes
+
     const mediumMain = palette.neutral.mediumMain;
     const medium = palette.neutral.medium;
   
     const handlePost = async () => {
+
+      // formdata allows pass image to api call
+
       const formData = new FormData();
       formData.append('userId', _id);
       formData.append('description', post);
       if (image) {
+        // adding picture key to the image and sending it to the posts route in the server
         formData.append('picture', image);
+
         formData.append('picturePath', image.name);
       }
+
+      // sending post info to backend
   
       const response = await fetch(`http://localhost:3001/posts`, {
         method: 'POST',
@@ -52,7 +70,13 @@ import {
         body: formData,
       });
       const posts = await response.json();
+
+      // keeps list of posts
+
       dispatch(setPosts({ posts }));
+
+      // resetting post creation
+
       setImage(null);
       setPost('');
     };
@@ -60,7 +84,10 @@ import {
     return (
       <WidgetWrapper>
         <FlexBetween gap = '1.5rem'>
-          <UserImage image = {picturePath} />
+          <UserImage image = {picturePath} />\
+
+          {/* post text input */}
+
           <InputBase
             placeholder = "What's on your mind?"
             onChange = {(e) => setPost(e.target.value)}
@@ -73,6 +100,9 @@ import {
             }}
           />
         </FlexBetween>
+        
+        {/* file drop */}
+
         {isImage && (
           <Box
             border = {`1px solid ${medium}`}
@@ -119,6 +149,8 @@ import {
         )}
   
         <Divider sx = {{ margin: '1.25rem 0' }} />
+
+        {/* post icons */}
   
         <FlexBetween>
           <FlexBetween gap = '0.25rem' onClick = {() => setIsImage(!isImage)}>
@@ -153,6 +185,8 @@ import {
               <MoreHorizOutlined sx = {{ color: mediumMain }} />
             </FlexBetween>
           )}
+
+          {/* submit post button */}
   
           <Button
             disabled = {!post}
