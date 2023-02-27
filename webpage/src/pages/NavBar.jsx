@@ -71,7 +71,8 @@ const NavBar = () => {
         >
           SocialFi
         </Typography>
-        {isNonMobileScreens && (
+        {/* SEARCHBAR */}
+        {/* {isNonMobileScreens && (
           <FlexBetween
             backgroundColor = {neutralLight}
             borderRadius = '9px'
@@ -83,7 +84,7 @@ const NavBar = () => {
               <Search />
             </IconButton>
           </FlexBetween>
-        )}
+        )} */}
       </FlexBetween>
 
       {/* desktop */}
