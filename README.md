@@ -24,6 +24,3 @@ SocialFi is a full-stack social media application that provides user authenticat
 
 ## Usage
 Deployment link where you'll be able to sign up and use the app is coming soon!
-
-## Contribution
-I welcome any contributions to this project! If you have suggestions or would like to fix bugs or improve the documentation, submit a request!
